@@ -1,4 +1,4 @@
-import { ClassSkillGrouping } from './types/ClassSkillGrouping';
+import ClassSkillGrouping from './ClassSkillGrouping';
 
 export default class CharacterClassRatings {
   private advantage: ClassSkillGrouping[];
@@ -25,16 +25,16 @@ export default class CharacterClassRatings {
 
   public addAdvantage(classSkillPairing:ClassSkillGrouping):void {
     this.advantage.push(classSkillPairing);
-    this.advantage.sort((a, b) => b.skillCount - a.skillCount);
+    this.advantage.sort((a, b) => ClassSkillGrouping.sortFunction(a, b));
   }
 
   public addNeutral(classSkillPairing:ClassSkillGrouping):void {
     this.neutral.push(classSkillPairing);
-    this.neutral.sort((a, b) => b.skillCount - a.skillCount);
+    this.neutral.sort((a, b) => ClassSkillGrouping.sortFunction(a, b));
   }
 
   public addDisadvantage(classSkillPairing:ClassSkillGrouping):void {
     this.disadvantages.push(classSkillPairing);
-    this.disadvantages.sort((a, b) => b.skillCount - a.skillCount);
+    this.disadvantages.sort((a, b) => ClassSkillGrouping.sortFunction(a, b));
   }
 }

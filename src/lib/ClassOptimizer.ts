@@ -1,7 +1,7 @@
 import Character from './Character';
 import CharacterClassRatings from './CharacterClassRatings';
 import { FEClass } from './types/FEClass';
-import { ClassSkillGrouping } from './types/ClassSkillGrouping';
+import ClassSkillGrouping from './ClassSkillGrouping';
 
 export default class ClassOptimizer {
   private classList:FEClass[];
@@ -37,9 +37,7 @@ export default class ClassOptimizer {
   }
 
   private static countSkill(feClass: FEClass, character: Character): number {
-    if (ClassOptimizer.isPersonalClass(feClass, character)) {
-      return 10;
-    }
+    if (ClassOptimizer.isPersonalClass(feClass, character)) return 10;
 
     let skillCount: number = 0;
     feClass.requiredSkills.forEach((skill) => {
@@ -55,11 +53,11 @@ export default class ClassOptimizer {
   private static accumulateClasses(skillCount: number,
     classRatings: CharacterClassRatings,
     feClass: FEClass) {
-    const classSkillPairing: ClassSkillGrouping = {
-      className: feClass.name,
+    const classSkillPairing = new ClassSkillGrouping(
+      feClass.name,
       skillCount,
-      skillTotal: feClass.requiredSkills.length,
-    };
+      feClass.requiredSkills.length,
+    );
 
     if (skillCount > 0) {
       classRatings.addAdvantage(classSkillPairing);
