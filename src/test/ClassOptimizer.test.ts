@@ -1,9 +1,7 @@
-// I want to display how many boons and skills match up per class. Also sort off of this.
-
 import CharacterClassRatings from '../lib/CharacterClassRatings';
 import ClassOptimizer from '../lib/ClassOptimizer';
 import Character from '../lib/Character';
-import { ClassSkillGrouping } from '../lib/types/ClassSkillGrouping';
+import ClassSkillGrouping from '../lib/ClassSkillGrouping';
 import { FEClass } from '../lib/types/FEClass';
 
 function generateClassList(): FEClass[] {
@@ -52,11 +50,11 @@ function generateClassSkillPairingList(classAndSkills: string): ClassSkillGroupi
   const classSkillTokenized: string[] = classAndSkills.split(',');
   const expected: ClassSkillGrouping[] = [];
   for (let i = 0; i < classSkillTokenized.length; i += 3) {
-    expected.push({
-      className: classSkillTokenized[i],
-      skillCount: parseInt(classSkillTokenized[i + 1], 10),
-      skillTotal: parseInt(classSkillTokenized[i + 2], 10),
-    });
+    expected.push(new ClassSkillGrouping(
+      classSkillTokenized[i],
+      parseInt(classSkillTokenized[i + 1], 10),
+      parseInt(classSkillTokenized[i + 2], 10),
+    ));
   }
   return expected;
 }
