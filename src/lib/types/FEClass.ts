@@ -4,4 +4,5 @@ export type FEClass = {
   canUseMagic: boolean,
   sexRequirement: string,
   personalClassName: string[],
+  studentRequired: boolean,
 };

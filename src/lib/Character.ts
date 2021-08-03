@@ -5,6 +5,7 @@ export default class Character {
   private buddingTalents: string[];
   private caster: boolean;
   private sex: string;
+  private student: boolean;
 
   constructor(
     name: string,
@@ -13,6 +14,7 @@ export default class Character {
     buddingTalents:string[],
     isCaster: boolean,
     sex: string,
+    student: boolean,
   ) {
     this.name = name;
     this.boons = boons;
@@ -20,6 +22,7 @@ export default class Character {
     this.buddingTalents = buddingTalents;
     this.caster = isCaster;
     this.sex = sex;
+    this.student = student;
   }
 
   public getName(): string {
@@ -44,5 +47,9 @@ export default class Character {
 
   public isBuddingTalent(skill: string): boolean {
     return this.buddingTalents.indexOf(skill) > -1;
+  }
+
+  public isStudent(): boolean {
+    return this.student;
   }
 }
