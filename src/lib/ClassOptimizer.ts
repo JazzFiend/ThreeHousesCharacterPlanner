@@ -29,6 +29,8 @@ export default class ClassOptimizer {
     ).filter(
       (feClass) => !feClass.personalClassName.length
                    || ClassOptimizer.isPersonalClass(feClass, character),
+    ).filter(
+      (feClass) => !(feClass.studentRequired && !character.isStudent()),
     );
   }
 

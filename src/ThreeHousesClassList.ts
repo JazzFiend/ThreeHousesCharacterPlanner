@@ -9,6 +9,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'female',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Wyvern Lord',
@@ -16,6 +17,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Mortal Savant',
@@ -23,6 +25,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Great Knight',
@@ -30,6 +33,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Bow Knight',
@@ -37,6 +41,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Dark Knight',
@@ -44,6 +49,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Holy Knight',
@@ -51,6 +57,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'War Master',
@@ -58,6 +65,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'male',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Gremory',
@@ -65,6 +73,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'female',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Trickster',
@@ -72,6 +81,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'War Monk',
@@ -79,6 +89,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'male',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'War Cleric',
@@ -86,6 +97,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'female',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Dark Flier',
@@ -93,6 +105,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'female',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Valkyrie',
@@ -100,6 +113,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'female',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Swordmaster',
@@ -107,6 +121,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Assassin',
@@ -114,6 +129,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Sniper',
@@ -121,6 +137,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'none',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Grappler',
@@ -128,6 +145,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'male',
       personalClassName: [],
+      studentRequired: false,
     });
     classList.push({
       name: 'Enlightened One',
@@ -135,6 +153,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'none',
       personalClassName: ['Byleth - Male', 'Byleth - Female'],
+      studentRequired: false,
     });
     classList.push({
       name: 'Death Knight',
@@ -142,6 +161,7 @@ export default class ThreeHousesClassList {
       canUseMagic: true,
       sexRequirement: 'none',
       personalClassName: ['Jeritza'],
+      studentRequired: false,
     });
     classList.push({
       name: 'Emperor',
@@ -149,6 +169,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'none',
       personalClassName: ['Edelgard'],
+      studentRequired: false,
     });
     classList.push({
       name: 'Great Lord',
@@ -156,6 +177,7 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'none',
       personalClassName: ['Dimitri'],
+      studentRequired: false,
     });
     classList.push({
       name: 'Barbarossa',
@@ -163,6 +185,15 @@ export default class ThreeHousesClassList {
       canUseMagic: false,
       sexRequirement: 'none',
       personalClassName: ['Claude'],
+      studentRequired: false,
+    });
+    classList.push({
+      name: 'Dancer',
+      requiredSkills: ['Sword', 'Riding'],
+      canUseMagic: true,
+      sexRequirement: 'none',
+      personalClassName: [],
+      studentRequired: true,
     });
     return classList;
   }
