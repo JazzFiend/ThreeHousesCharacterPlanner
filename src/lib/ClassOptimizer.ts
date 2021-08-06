@@ -2,6 +2,7 @@ import Character from './Character';
 import CharacterClassRatings from './CharacterClassRatings';
 import { FEClass } from './types/FEClass';
 import ClassSkillGrouping from './ClassSkillGrouping';
+import Sex from './enums/Sex';
 
 export default class ClassOptimizer {
   private classList:FEClass[];
@@ -25,7 +26,8 @@ export default class ClassOptimizer {
     return this.classList.filter(
       (feClass) => !character.isCaster() || feClass.canUseMagic,
     ).filter(
-      (feClass) => feClass.sexRequirement === 'none' || feClass.sexRequirement === character.getSex(),
+      (feClass) => feClass.sexRequirement === Sex.None
+                   || feClass.sexRequirement === character.getSex(),
     ).filter(
       (feClass) => !feClass.personalClassName.length
                    || ClassOptimizer.isPersonalClass(feClass, character),

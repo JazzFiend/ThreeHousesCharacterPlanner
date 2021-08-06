@@ -1,8 +1,11 @@
+import Sex from '../enums/Sex';
+import Skill from '../enums/Skill';
+
 export type FEClass = {
   name: string,
-  requiredSkills: string[],
+  requiredSkills: Skill[],
   canUseMagic: boolean,
-  sexRequirement: string,
+  sexRequirement: Sex,
   personalClassName: string[],
   studentRequired: boolean,
 };

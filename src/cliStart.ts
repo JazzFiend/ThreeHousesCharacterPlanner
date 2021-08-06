@@ -6,7 +6,10 @@ import ThreeHousesClassList from './ThreeHousesClassList';
 
 const threeHousesClassList:FEClass[] = ThreeHousesClassList.getFinalClassListRaw();
 const characterList: Character[] = ThreeHousesCharacterList.getThreeHousesCharacterList();
-const opt:ClassOptimizer = new ClassOptimizer(threeHousesClassList);
+const opt = new ClassOptimizer(threeHousesClassList);
+
+// const grouper = new CharacterGrouper(characterList);
+// const newList = grouper.getCharactersByHouse(House.BlueLions);
 
 characterList.forEach((character) => {
   console.log(character.getName());
