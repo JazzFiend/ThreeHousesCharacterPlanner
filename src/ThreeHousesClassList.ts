@@ -1,3 +1,5 @@
+import Sex from './lib/enums/Sex';
+import Skill from './lib/enums/Skill';
 import { FEClass } from './lib/types/FEClass';
 
 export default class ThreeHousesClassList {
@@ -5,145 +7,145 @@ export default class ThreeHousesClassList {
     const classList:FEClass[] = [];
     classList.push({
       name: 'Falcon Knight',
-      requiredSkills: ['Sword', 'Lance', 'Flying'],
+      requiredSkills: [Skill.Sword, Skill.Lance, Skill.Flying],
       canUseMagic: false,
-      sexRequirement: 'female',
+      sexRequirement: Sex.Female,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Wyvern Lord',
-      requiredSkills: ['Lance', 'Axe', 'Flying'],
+      requiredSkills: [Skill.Lance, Skill.Axe, Skill.Flying],
       canUseMagic: false,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Mortal Savant',
-      requiredSkills: ['Sword', 'Reason'],
+      requiredSkills: [Skill.Sword, Skill.Reason],
       canUseMagic: true,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Great Knight',
-      requiredSkills: ['Axe', 'Heavy Armor', 'Riding'],
+      requiredSkills: [Skill.Axe, Skill.HeavyArmor, Skill.Riding],
       canUseMagic: false,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Bow Knight',
-      requiredSkills: ['Lance', 'Bow', 'Riding'],
+      requiredSkills: [Skill.Lance, Skill.Bow, Skill.Riding],
       canUseMagic: false,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Dark Knight',
-      requiredSkills: ['Lance', 'Reason', 'Riding'],
+      requiredSkills: [Skill.Lance, Skill.Reason, Skill.Riding],
       canUseMagic: true,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Holy Knight',
-      requiredSkills: ['Lance', 'Faith', 'Riding'],
+      requiredSkills: [Skill.Lance, Skill.Faith, Skill.Riding],
       canUseMagic: true,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'War Master',
-      requiredSkills: ['Axe', 'Brawling'],
+      requiredSkills: [Skill.Axe, Skill.Brawling],
       canUseMagic: false,
-      sexRequirement: 'male',
+      sexRequirement: Sex.Male,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Gremory',
-      requiredSkills: ['Reason', 'Faith'],
+      requiredSkills: [Skill.Reason, Skill.Faith],
       canUseMagic: true,
-      sexRequirement: 'female',
+      sexRequirement: Sex.Female,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Trickster',
-      requiredSkills: ['Sword', 'Faith'],
+      requiredSkills: [Skill.Sword, Skill.Faith],
       canUseMagic: true,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'War Monk',
-      requiredSkills: ['Brawling', 'Faith'],
+      requiredSkills: [Skill.Brawling, Skill.Faith],
       canUseMagic: true,
-      sexRequirement: 'male',
+      sexRequirement: Sex.Male,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'War Cleric',
-      requiredSkills: ['Brawling', 'Faith'],
+      requiredSkills: [Skill.Brawling, Skill.Faith],
       canUseMagic: true,
-      sexRequirement: 'female',
+      sexRequirement: Sex.Female,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Dark Flier',
-      requiredSkills: ['Reason', 'Flying'],
+      requiredSkills: [Skill.Reason, Skill.Flying],
       canUseMagic: true,
-      sexRequirement: 'female',
+      sexRequirement: Sex.Female,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Valkyrie',
-      requiredSkills: ['Reason', 'Riding'],
+      requiredSkills: [Skill.Reason, Skill.Riding],
       canUseMagic: true,
-      sexRequirement: 'female',
+      sexRequirement: Sex.Female,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Swordmaster',
-      requiredSkills: ['Sword'],
+      requiredSkills: [Skill.Sword],
       canUseMagic: false,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Assassin',
-      requiredSkills: ['Sword', 'Bow'],
+      requiredSkills: [Skill.Sword, Skill.Bow],
       canUseMagic: false,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Sniper',
-      requiredSkills: ['Bow'],
+      requiredSkills: [Skill.Bow],
       canUseMagic: false,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: false,
     });
     classList.push({
       name: 'Grappler',
-      requiredSkills: ['Brawling'],
+      requiredSkills: [Skill.Brawling],
       canUseMagic: false,
-      sexRequirement: 'male',
+      sexRequirement: Sex.Male,
       personalClassName: [],
       studentRequired: false,
     });
@@ -151,7 +153,7 @@ export default class ThreeHousesClassList {
       name: 'Enlightened One',
       requiredSkills: [],
       canUseMagic: true,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: ['Byleth - Male', 'Byleth - Female'],
       studentRequired: false,
     });
@@ -159,7 +161,7 @@ export default class ThreeHousesClassList {
       name: 'Death Knight',
       requiredSkills: [],
       canUseMagic: true,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: ['Jeritza'],
       studentRequired: false,
     });
@@ -167,7 +169,7 @@ export default class ThreeHousesClassList {
       name: 'Emperor',
       requiredSkills: [],
       canUseMagic: false,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: ['Edelgard'],
       studentRequired: false,
     });
@@ -175,7 +177,7 @@ export default class ThreeHousesClassList {
       name: 'Great Lord',
       requiredSkills: [],
       canUseMagic: false,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: ['Dimitri'],
       studentRequired: false,
     });
@@ -183,15 +185,15 @@ export default class ThreeHousesClassList {
       name: 'Barbarossa',
       requiredSkills: [],
       canUseMagic: false,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: ['Claude'],
       studentRequired: false,
     });
     classList.push({
       name: 'Dancer',
-      requiredSkills: ['Sword', 'Riding'],
+      requiredSkills: [Skill.Sword, Skill.Riding],
       canUseMagic: true,
-      sexRequirement: 'none',
+      sexRequirement: Sex.None,
       personalClassName: [],
       studentRequired: true,
     });

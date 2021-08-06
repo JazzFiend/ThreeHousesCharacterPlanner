@@ -3,6 +3,9 @@ import ClassOptimizer from '../lib/ClassOptimizer';
 import Character from '../lib/Character';
 import ClassSkillGrouping from '../lib/ClassSkillGrouping';
 import { FEClass } from '../lib/types/FEClass';
+import CharacterBuilder from '../lib/CharacterBuilder';
+import Sex from '../lib/enums/Sex';
+import Skill from '../lib/enums/Skill';
 
 function generateClassList(): FEClass[] {
   const classList:FEClass[] = [];
@@ -10,31 +13,31 @@ function generateClassList(): FEClass[] {
     name: 'a',
     requiredSkills: [],
     canUseMagic: true,
-    sexRequirement: 'none',
+    sexRequirement: Sex.None,
     personalClassName: [],
     studentRequired: false,
   });
   classList.push({
     name: 'b',
-    requiredSkills: ['skill1'],
+    requiredSkills: [Skill.Sword],
     canUseMagic: false,
-    sexRequirement: 'none',
+    sexRequirement: Sex.None,
     personalClassName: [],
     studentRequired: false,
   });
   classList.push({
     name: 'c',
-    requiredSkills: ['skill2', 'skill3'],
+    requiredSkills: [Skill.Reason, Skill.Flying],
     canUseMagic: true,
-    sexRequirement: 'female',
+    sexRequirement: Sex.Female,
     personalClassName: [],
     studentRequired: false,
   });
   classList.push({
     name: 'd',
-    requiredSkills: ['skill2'],
+    requiredSkills: [Skill.Reason],
     canUseMagic: true,
-    sexRequirement: 'male',
+    sexRequirement: Sex.Male,
     personalClassName: [],
     studentRequired: false,
   });
@@ -42,7 +45,7 @@ function generateClassList(): FEClass[] {
     name: 'e',
     requiredSkills: [],
     canUseMagic: false,
-    sexRequirement: 'none',
+    sexRequirement: Sex.None,
     personalClassName: ['Personal'],
     studentRequired: false,
   });
@@ -75,18 +78,20 @@ function expectOptimizedClasses(
   expect(optimizedClasses.getDisadvantages()).toEqual(expectedDisadvantages);
 }
 
-test('Generic Character', () => {
+test('Generic Character with no skills', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('name', [], [], [], false, 'female', false);
+  const character = (CharacterBuilder.createNewCharacter().withSex(Sex.Female).build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses:CharacterClassRatings = opt.getOptimizedClasses(character);
-
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList(''), generateClassSkillPairingList('a,0,0,b,0,1,c,0,2'), generateClassSkillPairingList(''));
 });
 
 test('One Boon', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('name', ['skill1'], [], [], false, 'female', false);
+  const character = (CharacterBuilder.createNewCharacter()
+    .withBoons([Skill.Sword])
+    .withSex(Sex.Female)
+    .build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses = opt.getOptimizedClasses(character);
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList('b,1,1'), generateClassSkillPairingList('a,0,0,c,0,2'), generateClassSkillPairingList(''));
@@ -94,7 +99,10 @@ test('One Boon', () => {
 
 test('One Bane', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('name', [], ['skill1'], [], false, 'female', false);
+  const character = (CharacterBuilder.createNewCharacter()
+    .withBanes([Skill.Sword])
+    .withSex(Sex.Female)
+    .build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses = opt.getOptimizedClasses(character);
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList(''), generateClassSkillPairingList('a,0,0,c,0,2'), generateClassSkillPairingList('b,-1,1'));
@@ -102,7 +110,10 @@ test('One Bane', () => {
 
 test('One Budding Talent', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('name', [], [], ['skill1'], false, 'female', false);
+  const character = (CharacterBuilder.createNewCharacter()
+    .withBuddingTalents([Skill.Sword])
+    .withSex(Sex.Female)
+    .build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses = opt.getOptimizedClasses(character);
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList('b,1,1'), generateClassSkillPairingList('a,0,0,c,0,2'), generateClassSkillPairingList(''));
@@ -110,23 +121,33 @@ test('One Budding Talent', () => {
 
 test('One Budding Talent that is also a bane', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('name', [], ['skill1'], ['skill1'], false, 'female', false);
+  const character = (CharacterBuilder.createNewCharacter()
+    .withBanes([Skill.Sword])
+    .withBuddingTalents([Skill.Sword])
+    .withSex(Sex.Female)
+    .build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses = opt.getOptimizedClasses(character);
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList('b,1,1'), generateClassSkillPairingList('a,0,0,c,0,2'), generateClassSkillPairingList(''));
 });
 
-test('Two Advantagous classes, sorted', () => {
+test('Two Advantageous classes, sorted', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('name', ['skill1', 'skill2', 'skill3'], [], [], false, 'female', false);
+  const character = (CharacterBuilder.createNewCharacter()
+    .withBoons([Skill.Sword, Skill.Reason, Skill.Flying])
+    .withSex(Sex.Female)
+    .build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses = opt.getOptimizedClasses(character);
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList('c,2,2,b,1,1'), generateClassSkillPairingList('a,0,0'), generateClassSkillPairingList(''));
 });
 
-test('Two Disadvantagous classes, sorted', () => {
+test('Two Disadvantageous classes, sorted', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('name', [], ['skill1', 'skill2', 'skill3'], [], false, 'female', false);
+  const character = (CharacterBuilder.createNewCharacter()
+    .withBanes([Skill.Sword, Skill.Reason, Skill.Flying])
+    .withSex(Sex.Female)
+    .build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses = opt.getOptimizedClasses(character);
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList(''), generateClassSkillPairingList('a,0,0'), generateClassSkillPairingList('b,-1,1,c,-2,2'));
@@ -134,7 +155,13 @@ test('Two Disadvantagous classes, sorted', () => {
 
 test('For a magical character, physical classes are omitted.', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('name', ['skill2'], ['skill1'], ['skill3'], true, 'female', false);
+  const character = (CharacterBuilder.createNewCharacter()
+    .withBoons([Skill.Reason])
+    .withBanes([Skill.Sword])
+    .withBuddingTalents([Skill.Flying])
+    .withCasterStatus(true)
+    .withSex(Sex.Female)
+    .build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses = opt.getOptimizedClasses(character);
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList('c,2,2'), generateClassSkillPairingList('a,0,0'), generateClassSkillPairingList(''));
@@ -142,7 +169,11 @@ test('For a magical character, physical classes are omitted.', () => {
 
 test('Male character cannot be considered for female classes', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('name', ['skill1', 'skill2'], [], ['skill3'], false, 'male', false);
+  const character = (CharacterBuilder.createNewCharacter()
+    .withBoons([Skill.Sword, Skill.Reason])
+    .withBanes([Skill.Flying])
+    .withSex(Sex.Male)
+    .build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses = opt.getOptimizedClasses(character);
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList('b,1,1,d,1,1'), generateClassSkillPairingList('a,0,0'), generateClassSkillPairingList(''));
@@ -150,7 +181,12 @@ test('Male character cannot be considered for female classes', () => {
 
 test('Personal Class should work when the name matches', () => {
   const classList:FEClass[] = generateClassList();
-  const character = new Character('Personal', ['skill1', 'skill2'], [], ['skill3'], false, 'male', false);
+  const character = (CharacterBuilder.createNewCharacter()
+    .withName('Personal')
+    .withBoons([Skill.Sword, Skill.Reason])
+    .withBuddingTalents([Skill.Flying])
+    .withSex(Sex.Male)
+    .build());
   const opt = new ClassOptimizer(classList);
   const optimizedClasses = opt.getOptimizedClasses(character);
   expectOptimizedClasses(optimizedClasses, generateClassSkillPairingList('e,10,0,b,1,1,d,1,1'), generateClassSkillPairingList('a,0,0'), generateClassSkillPairingList(''));
@@ -160,14 +196,22 @@ test('Student specific class should only select students', () => {
   const classList:FEClass[] = [];
   classList.push({
     name: 'studentSpecific',
-    requiredSkills: ['skill1'],
+    requiredSkills: [Skill.Sword],
     canUseMagic: true,
-    sexRequirement: 'none',
+    sexRequirement: Sex.None,
     personalClassName: [],
     studentRequired: true,
   });
-  const student = new Character('Student', ['skill1'], [], [], true, 'male', true);
-  const notStudent = new Character('Not a Student', ['skill1'], [], [], true, 'female', false);
+  const student:Character = (CharacterBuilder.createNewCharacter()
+    .withName('Student')
+    .withBoons([Skill.Sword])
+    .withStudentStatus(true)
+    .build());
+  const notStudent:Character = (CharacterBuilder.createNewCharacter()
+    .withName('Not a Student')
+    .withBoons([Skill.Sword])
+    .withStudentStatus(false)
+    .build());
   const opt = new ClassOptimizer(classList);
   expectOptimizedClasses(opt.getOptimizedClasses(student), generateClassSkillPairingList('studentSpecific,1,1'), generateClassSkillPairingList(''), generateClassSkillPairingList(''));
   expectOptimizedClasses(opt.getOptimizedClasses(notStudent), generateClassSkillPairingList(''), generateClassSkillPairingList(''), generateClassSkillPairingList(''));
