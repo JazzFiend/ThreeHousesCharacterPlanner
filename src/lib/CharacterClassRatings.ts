@@ -1,9 +1,9 @@
-import ClassSkillGrouping from './ClassSkillGrouping';
+import ClassSkillRatio from './ClassSkillRatio';
 
 export default class CharacterClassRatings {
-  private advantage: ClassSkillGrouping[];
-  private neutral: ClassSkillGrouping[];
-  private disadvantages: ClassSkillGrouping[];
+  private advantage: ClassSkillRatio[];
+  private neutral: ClassSkillRatio[];
+  private disadvantages: ClassSkillRatio[];
 
   constructor() {
     this.advantage = [];
@@ -11,30 +11,30 @@ export default class CharacterClassRatings {
     this.disadvantages = [];
   }
 
-  public getAdvantages(): ClassSkillGrouping[] {
+  public getAdvantages(): ClassSkillRatio[] {
     return this.advantage;
   }
 
-  public getNeutral(): ClassSkillGrouping[] {
+  public getNeutral(): ClassSkillRatio[] {
     return this.neutral;
   }
 
-  public getDisadvantages(): ClassSkillGrouping[] {
+  public getDisadvantages(): ClassSkillRatio[] {
     return this.disadvantages;
   }
 
-  public addAdvantage(classSkillPairing:ClassSkillGrouping):void {
+  public addAdvantage(classSkillPairing:ClassSkillRatio):void {
     this.advantage.push(classSkillPairing);
-    this.advantage.sort((a, b) => ClassSkillGrouping.sortFunction(a, b));
+    this.advantage.sort((a, b) => ClassSkillRatio.sortFunction(a, b));
   }
 
-  public addNeutral(classSkillPairing:ClassSkillGrouping):void {
+  public addNeutral(classSkillPairing:ClassSkillRatio):void {
     this.neutral.push(classSkillPairing);
-    this.neutral.sort((a, b) => ClassSkillGrouping.sortFunction(a, b));
+    this.neutral.sort((a, b) => ClassSkillRatio.sortFunction(a, b));
   }
 
-  public addDisadvantage(classSkillPairing:ClassSkillGrouping):void {
+  public addDisadvantage(classSkillPairing:ClassSkillRatio):void {
     this.disadvantages.push(classSkillPairing);
-    this.disadvantages.sort((a, b) => ClassSkillGrouping.sortFunction(a, b));
+    this.disadvantages.sort((a, b) => ClassSkillRatio.sortFunction(a, b));
   }
 }

@@ -1,11 +1,11 @@
 import Character from './Character';
-import House from './enums/House';
-import Sex from './enums/Sex';
-import Skill from './enums/Skill';
+import House from '../enums/House';
+import Sex from '../enums/Sex';
+import Skill from '../enums/Skill';
 
 export default class CharacterBuilder {
   private name: string = '';
-  private house: House = House.GarregMach;
+  private house: House = House.Unknown;
   private boons: Skill[] = [];
   private banes: Skill[] = [];
   private buddingTalents: Skill[] = [];
@@ -16,6 +16,7 @@ export default class CharacterBuilder {
   public static createNewCharacter(): CharacterBuilder {
     return new CharacterBuilder();
   }
+
   public withName(name: string): CharacterBuilder {
     this.name = name;
     return this;
