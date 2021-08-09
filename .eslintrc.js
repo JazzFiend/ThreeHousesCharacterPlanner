@@ -21,6 +21,7 @@ module.exports = {
   ],
   rules: {
     'lines-between-class-members': 'off',
+    'max-len': ["error", { "code": 120 }],
     '@typescript-eslint/lines-between-class-members': 'off',
     "jest/expect-expect": [
       "error",

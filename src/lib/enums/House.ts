@@ -4,5 +4,6 @@ enum House {
   BlueLions,
   AshenWolves,
   GarregMach,
+  Unknown,
 }
 export { House as default };

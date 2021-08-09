@@ -1,6 +1,6 @@
-import House from './enums/House';
-import Sex from './enums/Sex';
-import Skill from './enums/Skill';
+import House from '../enums/House';
+import Sex from '../enums/Sex';
+import Skill from '../enums/Skill';
 
 export default class Character {
   private name: string;

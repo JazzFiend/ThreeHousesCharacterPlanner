@@ -1,8 +1,8 @@
-import Character from './lib/Character';
-import CharacterBuilder from './lib/CharacterBuilder';
-import House from './lib/enums/House';
-import Sex from './lib/enums/Sex';
-import Skill from './lib/enums/Skill';
+import Character from '../Character/Character';
+import CharacterBuilder from '../Character/CharacterBuilder';
+import House from '../enums/House';
+import Sex from '../enums/Sex';
+import Skill from '../enums/Skill';
 
 export default class ThreeHousesCharacterList {
   public static getThreeHousesCharacterList(): Character[] {

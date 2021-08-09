@@ -1,17 +1,23 @@
-import Character from './lib/Character';
-import ClassOptimizer from './lib/ClassOptimizer';
+import Character from './lib/Character/Character';
+import ClassRater from './lib/ClassRater';
 import { FEClass } from './lib/types/FEClass';
-import ThreeHousesCharacterList from './ThreeHousesCharacterList';
-import ThreeHousesClassList from './ThreeHousesClassList';
+import ThreeHousesCharacterList from './lib/data/ThreeHousesCharacterList';
+import ThreeHousesClassList from './lib/data/ThreeHousesClassList';
 
 const threeHousesClassList:FEClass[] = ThreeHousesClassList.getFinalClassListRaw();
 const characterList: Character[] = ThreeHousesCharacterList.getThreeHousesCharacterList();
-const opt = new ClassOptimizer(threeHousesClassList);
 
-// const grouper = new CharacterGrouper(characterList);
-// const newList = grouper.getCharactersByHouse(House.BlueLions);
+// CharacterFilter will reduce the number of characters
+// const blueLions = CharacterFilter.getCharactersByHouse(characterList, House.BlueLions);
 
+// Class filter will reduce the number of classes
+// const highLevelClasses = ClassFilter.getClassesByCategory(
+//   threeHousesClassList,
+//   [ClassCategory.Master, ClassCategory.Advanced, ClassCategory.Special, ClassCategory.Unique],
+// );
+
+// As this stands, all characters and classes will be considered.
 characterList.forEach((character) => {
   console.log(character.getName());
-  console.log(opt.getOptimizedClasses(character));
+  console.log(ClassRater.calculateClassRatings(threeHousesClassList, character).getAdvantages());
 });

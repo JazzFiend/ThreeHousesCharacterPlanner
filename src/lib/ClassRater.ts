@@ -1,47 +1,41 @@
-import Character from './Character';
+import Character from './Character/Character';
 import CharacterClassRatings from './CharacterClassRatings';
 import { FEClass } from './types/FEClass';
-import ClassSkillGrouping from './ClassSkillGrouping';
+import ClassSkillRatio from './ClassSkillRatio';
 import Sex from './enums/Sex';
 
-export default class ClassOptimizer {
-  private classList:FEClass[];
-
-  constructor(classList:FEClass[]) {
-    this.classList = classList;
-  }
-
-  public getOptimizedClasses(character:Character): CharacterClassRatings {
+export default class ClassRater {
+  public static calculateClassRatings(classList:FEClass[], character:Character): CharacterClassRatings {
     const classRatings:CharacterClassRatings = new CharacterClassRatings();
-    const filteredClassList:FEClass[] = this.filterClassList(character);
+    const filteredClassList:FEClass[] = this.filterClassList(classList, character);
 
     filteredClassList.forEach((feClass) => {
-      const skillCount: number = ClassOptimizer.countSkill(feClass, character);
-      ClassOptimizer.accumulateClasses(skillCount, classRatings, feClass);
+      const skillCount: number = ClassRater.countSkill(feClass, character);
+      ClassRater.accumulateClasses(skillCount, classRatings, feClass);
     });
     return classRatings;
   }
 
-  private filterClassList(character: Character): FEClass[] {
-    return this.classList.filter(
+  private static filterClassList(classList:FEClass[], character: Character): FEClass[] {
+    return classList.filter(
       (feClass) => !character.isCaster() || feClass.canUseMagic,
     ).filter(
       (feClass) => feClass.sexRequirement === Sex.None
                    || feClass.sexRequirement === character.getSex(),
     ).filter(
-      (feClass) => !feClass.personalClassName.length
-                   || ClassOptimizer.isPersonalClass(feClass, character),
+      (feClass) => !feClass.personalClassNames.length
+                   || ClassRater.isPersonalClass(feClass, character),
     ).filter(
       (feClass) => !(feClass.studentRequired && !character.isStudent()),
     );
   }
 
   private static isPersonalClass(feClass: FEClass, character: Character): boolean {
-    return feClass.personalClassName.indexOf(character.getName()) > -1;
+    return feClass.personalClassNames.indexOf(character.getName()) > -1;
   }
 
   private static countSkill(feClass: FEClass, character: Character): number {
-    if (ClassOptimizer.isPersonalClass(feClass, character)) return 10;
+    if (ClassRater.isPersonalClass(feClass, character)) return 10;
 
     let skillCount: number = 0;
     feClass.requiredSkills.forEach((skill) => {
@@ -57,8 +51,9 @@ export default class ClassOptimizer {
   private static accumulateClasses(skillCount: number,
     classRatings: CharacterClassRatings,
     feClass: FEClass) {
-    const classSkillPairing = new ClassSkillGrouping(
+    const classSkillPairing = new ClassSkillRatio(
       feClass.name,
+      feClass.category,
       skillCount,
       feClass.requiredSkills.length,
     );
